@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Start Guide - Computer Issues & Solutions</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            background: #f5f5f5;
+            cursor: pointer;
+            font-size: 1.05em;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            background: #e8e8e8;
+        }
+
+        .tab-button.active {
+            background: white;
+            border-bottom: 4px solid #667eea;
+            color: #667eea;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .section-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+
+        .issue {
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .issue:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        }
+
+        .issue-title {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .issue-content {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .beep-list {
+            margin: 15px 0;
+        }
+
+        .beep-item {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .beep-item:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .beep-code {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        strong {
+            color: #333;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .note {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #1565c0;
+        }
+
+        .warning {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #e65100;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                border-right: none;
+                border-bottom: 2px solid #e0e0e0;
+            }
+
+            .tab-button.active {
+                border-right: 4px solid #667eea;
+                border-bottom: none;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.4em;
+            }
+
+            .issue-title {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖥️ Computer Issues Quick Start Guide</h1>
+            <p>Identify and solve hardware, software, and printer problems</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('hardware')">
+                ⚙️ Hardware Issues
+            </button>
+            <button class="tab-button" onclick="switchTab('software')">
+                💻 Software Issues
+            </button>
+            <button class="tab-button" onclick="switchTab('printer')">
+                🖨️ Printer Issues
+            </button>
+        </div>
+
+        <div class="content">
+            <!-- HARDWARE TAB -->
+            <div id="hardware" class="tab-content active">
+                <div class="section">
+                    <h2 class="section-title">Hardware-Related Issues</h2>
+                    <p class="section-description">
+                        Hardware faults occur in the physical components of the computer such as the CPU, RAM, motherboard, graphics card and power supply. These faults often show clear symptoms that help identify the failing component.
+                    </p>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">📢 POST Beep Codes (AWARD BIOS)</div>
+                    <div class="issue-content">
+                        <p>When the computer starts, the BIOS performs a Power-On Self-Test (POST). If a component fails, the motherboard plays beep codes to indicate the fault.</p>
+                        <div class="beep-list">
+                            <div class="beep-item">
+                                <span class="beep-code">1 short beep</span> – System boot successful. No action required.
+                            </div>
+                            <div class="beep-item">
+                                <span class="beep-code">2 short beeps</span> – CMOS settings error. Enter BIOS and reset CMOS to default settings.
+                            </div>
+                            <div class="beep-item">
+                                <span class="beep-code">1 long, 1 short</span> – Memory or motherboard error. Reseat RAM, test one stick at a time, replace faulty RAM or motherboard.
+                            </div>
+                            <div class="beep-item">
+                                <span class="beep-code">1 long, 2 short</span> – Monitor or graphics card error. Reconnect monitor, reseat graphics card, replace if needed.
+                            </div>
+                            <div class="beep-item">
+                                <span class="beep-code">1 long, 3 short</span> – Keyboard error. Reconnect keyboard, try another USB port, replace keyboard.
+                            </div>
+                            <div class="beep-item">
+                                <span class="beep-code">1 long, 9 short</span> – BIOS ROM error. BIOS is corrupted. Reflash or reinstall BIOS.
+                            </div>
+                            <div class="beep-item">
+                                <span class="beep-code">Continuous long beeps</span> – Graphics card not inserted properly. Reseat graphics card firmly in PCI-E slot.
+                            </div>
+                            <div class="beep-item">
+                                <span class="beep-code">Continuous short beeps</span> – Power error. Disconnect all hardware, reconnect CPU, motherboard and GPU only, then reconnect components one by one. Replace PSU if issue continues.
+                            </div>
+                        </div>
+                        <div class="note">
+                            <strong>Note:</strong> Passing POST only confirms basic functionality. Hardware may still fail under load due to heat or driver issues.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">🌡️ Excessive Heat</div>
+                    <div class="issue-content">
+                        <p><strong>Problem:</strong> Excessive heat causes random restarts or shutdowns, especially during high processing loads. Heat issues occur due to high room temperature, dust buildup, inadequate cooling or failing fans.</p>
+                        <p><strong>Diagnosis:</strong> Check temperatures in BIOS or use hardware monitoring software. Stress the CPU or GPU and observe if the system restarts at a specific temperature.</p>
+                        <p><strong>Solutions:</strong></p>
+                        <ul>
+                            <li>Clean dust from components</li>
+                            <li>Add more case fans</li>
+                            <li>Upgrade CPU or GPU coolers</li>
+                            <li>Improve airflow and ensure vents are not blocked</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">🔊 Noise Issues</div>
+                    <div class="issue-content">
+                        <p><strong>Problem:</strong> Loud noise usually comes from worn-out cooling fans spinning at high RPM.</p>
+                        <p><strong>Solutions:</strong></p>
+                        <ul>
+                            <li>Replace old fans with larger, higher-quality ones that move more air at lower RPM</li>
+                            <li>Clean dust from components</li>
+                            <li>Ensure cables are not touching fan blades</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">👁️ Physical Inspection</div>
+                    <div class="issue-content">
+                        <p><strong>What to Check:</strong></p>
+                        <ul>
+                            <li>Monitors for dead pixels or cracks</li>
+                            <li>Keyboards and mice for stuck keys or damaged cables</li>
+                            <li>All ports are clean and undamaged</li>
+                            <li>Frayed power cords or blocked ventilation around the case</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">🧹 Cleaning Tools & Maintenance</div>
+                    <div class="issue-content">
+                        <p><strong>Tools:</strong></p>
+                        <ul>
+                            <li>Compressed air for cleaning internal components</li>
+                            <li>Lint-free cloth for screens and external surfaces</li>
+                        </ul>
+                        <div class="note">
+                            <strong>Tip:</strong> Internal cleaning should be done about once a year.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOFTWARE TAB -->
+            <div id="software" class="tab-content">
+                <div class="section">
+                    <h2 class="section-title">Software-Related Issues</h2>
+                    <p class="section-description">
+                        Software faults relate to the operating system, drivers or applications. These issues often cause crashes, freezes or unexpected behaviour.
+                    </p>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">💀 Blue Screen of Death (BSOD)</div>
+                    <div class="issue-content">
+                        <p><strong>What is it:</strong> A BSOD occurs when Windows encounters a critical error it cannot recover from.</p>
+                        <p><strong>Common Causes:</strong></p>
+                        <ul>
+                            <li>Corrupted system files</li>
+                            <li>Incorrect or outdated drivers</li>
+                            <li>Faulty RAM</li>
+                            <li>Overheating hardware</li>
+                            <li>Malware</li>
+                        </ul>
+                        <p><strong>Solutions:</strong></p>
+                        <ul>
+                            <li>Update drivers</li>
+                            <li>Run Windows Update</li>
+                            <li>Scan for malware</li>
+                            <li>Check temperatures</li>
+                            <li>Run CHKDSK</li>
+                            <li>Test RAM</li>
+                            <li>Replace faulty hardware if necessary</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">❄️ Application Not Responding</div>
+                    <div class="issue-content">
+                        <p><strong>Problem:</strong> Applications may freeze and show a "Not Responding" status.</p>
+                        <p><strong>Common Causes:</strong></p>
+                        <ul>
+                            <li>Software bugs</li>
+                            <li>Outdated versions</li>
+                            <li>Slow internet</li>
+                            <li>Faulty network cables</li>
+                            <li>Low system resources</li>
+                        </ul>
+                        <p><strong>Solutions:</strong></p>
+                        <ul>
+                            <li>End the task and restart the application</li>
+                            <li>Update the software</li>
+                            <li>Check network connections</li>
+                            <li>Reinstall the application</li>
+                            <li>Clear temporary files</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">🦠 Malware Symptoms</div>
+                    <div class="issue-content">
+                        <p><strong>Signs of Malware:</strong></p>
+                        <ul>
+                            <li>Slow performance</li>
+                            <li>Unexpected pop-ups</li>
+                            <li>Unknown programs starting automatically</li>
+                            <li>Unusual system behaviour</li>
+                        </ul>
+                        <p><strong>Solutions:</strong></p>
+                        <ul>
+                            <li>Run antivirus scans</li>
+                            <li>Remove detected threats</li>
+                            <li>Restore from backups if needed</li>
+                            <li>Document symptoms and actions taken</li>
+                        </ul>
+                        <div class="warning">
+                            <strong>Warning:</strong> Use reputable antivirus software and keep it updated.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRINTER TAB -->
+            <div id="printer" class="tab-content">
+                <div class="section">
+                    <h2 class="section-title">Printer-Related Issues</h2>
+                    <p class="section-description">
+                        Printers commonly fail due to spooler errors, driver issues, connection problems or internal blockages.
+                    </p>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">📋 Print Spooler Errors</div>
+                    <div class="issue-content">
+                        <p><strong>Problem:</strong> If the print spooler fails, no documents will print.</p>
+                        <p><strong>Solution:</strong></p>
+                        <ol>
+                            <li>End the <code>spoolsv.exe</code> process</li>
+                            <li>Start the spooler again</li>
+                            <li>This clears stuck print jobs</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">🖨️ Print Test Page</div>
+                    <div class="issue-content">
+                        <p><strong>Purpose:</strong> Printing a test page confirms whether:</p>
+                        <ul>
+                            <li>The printer is detected</li>
+                            <li>The driver is installed</li>
+                            <li>The printer is responding</li>
+                        </ul>
+                        <p><strong>If Test Page Fails:</strong></p>
+                        <ul>
+                            <li>Reinstall drivers</li>
+                            <li>Check connections</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="issue">
+                    <div class="issue-title">🔧 Printer Maintenance</div>
+                    <div class="issue-content">
+                        <p><strong>Regular Maintenance Tasks:</strong></p>
+                        <ul>
+                            <li>Perform nozzle checks</li>
+                            <li>Clean print heads</li>
+                            <li>Align print heads</li>
+                            <li>Remove debris inside the printer</li>
+                        </ul>
+                        <div class="note">
+                            <strong>Tip:</strong> Follow the maintenance steps in the printer's manual for specific instructions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const contents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+
+            // Remove active class from all buttons
+            const buttons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+
+            // Show the selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to the clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
